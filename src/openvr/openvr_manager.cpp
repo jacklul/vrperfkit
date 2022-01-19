@@ -18,6 +18,8 @@ namespace vrperfkit {
 
 	using namespace vr;
 
+	using vrperfkit::g_config;
+
 	namespace {
 		DXGI_FORMAT DetermineOutputFormat(DXGI_FORMAT inputFormat) {
 			switch (inputFormat) {
@@ -339,6 +341,13 @@ namespace vrperfkit {
 			ctr[eye].x = 0.5f * (1.f + (right + left - 2*canted) / (left - right));
 			ctr[eye].y = 0.5f * (1.f + (bottom + top) / (top - bottom));
 			LOG_INFO << "Projection center for eye " << eye << ": " << ctr[eye].x << ", " << ctr[eye].y;
+
+			if (g_config.offsets.offsetY != 1.0 || g_config.offsets.offsetX != 1.0) {
+				ctr[eye].x = g_config.offsets.offsetX * ctr[eye].x;
+				ctr[eye].y = g_config.offsets.offsetY * ctr[eye].y;
+
+				LOG_INFO << "Modified projection center for eye " << eye << ": " << ctr[eye].x << ", " << ctr[eye].y;
+			}
 		}
 	}
 

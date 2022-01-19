@@ -30,10 +30,16 @@ namespace vrperfkit {
 		float outerRadius = 1.0f;
 	};
 
+	struct CenterOffsetConfig {
+		float offsetY = 1.0f;
+		float offsetX = 1.0f;
+	};
+
 	struct Config {
 		UpscaleConfig upscaling;
 		DxvkConfig dxvk;
 		FixedFoveatedConfig ffr;
+		CenterOffsetConfig offsets;
 		bool debugMode = false;
 		std::string dllLoadPath = "";
 

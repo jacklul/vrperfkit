@@ -94,6 +94,11 @@ namespace vrperfkit {
 			ffr.midRadius = ffrCfg["midRadius"].as<float>(ffr.midRadius);
 			ffr.outerRadius = ffrCfg["outerRadius"].as<float>(ffr.outerRadius);
 
+			YAML::Node offsetCfg = cfg["centerOffset"];
+			CenterOffsetConfig &offsets = g_config.offsets;
+			offsets.offsetY = offsetCfg["offsetY"].as<float>(offsets.offsetY);
+			offsets.offsetX = offsetCfg["offsetX"].as<float>(offsets.offsetX);
+
 			g_config.debugMode = cfg["debugMode"].as<bool>(g_config.debugMode);
 
 			g_config.dllLoadPath = cfg["dllLoadPath"].as<std::string>(g_config.dllLoadPath);
@@ -111,6 +116,11 @@ namespace vrperfkit {
 			LOG_INFO << "    * Sharpness:    " << std::setprecision(2) << g_config.upscaling.sharpness;
 			LOG_INFO << "    * Radius:       " << std::setprecision(2) << g_config.upscaling.radius;
 			LOG_INFO << "    * MIP bias:     " << PrintToggle(g_config.upscaling.applyMipBias);
+
+			if (g_config.offsets.offsetY != 1.0 || g_config.offsets.offsetX != 1.0) {
+				LOG_INFO << "    * Offset Y:     " << std::setprecision(2) << g_config.offsets.offsetY;
+				LOG_INFO << "    * Offset X:     " << std::setprecision(2) << g_config.offsets.offsetX;
+			}
 		}
 		LOG_INFO << "  Debug mode is " << PrintToggle(g_config.debugMode);
 		FlushLog();

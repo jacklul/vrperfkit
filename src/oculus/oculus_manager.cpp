@@ -15,6 +15,8 @@
 using Microsoft::WRL::ComPtr;
 
 namespace vrperfkit {
+	using vrperfkit::g_config;
+
 	namespace {
 		void Check(const std::string &action, ovrResult result) {
 			if (OVR_FAILURE(result)) {
@@ -159,7 +161,13 @@ namespace vrperfkit {
 		for (int eye = 0; eye < 2; ++eye) {
 			projCenters.eyeCenter[eye].x = 0.5f * (1.f + (fov[eye].LeftTan - fov[eye].RightTan) / (fov[eye].RightTan + fov[eye].LeftTan));
 			projCenters.eyeCenter[eye].y = 0.5f * (1.f + (fov[eye].DownTan - fov[eye].UpTan) / (fov[eye].DownTan + fov[eye].UpTan));
+
+			if (g_config.offsets.offsetY != 1.0 || g_config.offsets.offsetX != 1.0) {
+				projCenters.eyeCenter[eye].x = g_config.offsets.offsetX * projCenters.eyeCenter[eye].x;
+				projCenters.eyeCenter[eye].y = g_config.offsets.offsetY * projCenters.eyeCenter[eye].y;
+			}
 		}
+
 		return projCenters;
 	}
 
