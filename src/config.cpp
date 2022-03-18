@@ -95,6 +95,11 @@ namespace vrperfkit {
 			ffr.midRadius = ffrCfg["midRadius"].as<float>(ffr.midRadius);
 			ffr.outerRadius = ffrCfg["outerRadius"].as<float>(ffr.outerRadius);
 			ffr.overrideSingleEyeOrder = ffrCfg["overrideSingleEyeOrder"].as<std::string>(ffr.overrideSingleEyeOrder);
+			
+			YAML::Node offsetCfg = cfg["centerOffset"];
+			CenterOffsetConfig &offsets = g_config.offsets;
+			offsets.offsetY = offsetCfg["offsetY"].as<float>(offsets.offsetY);
+			offsets.offsetX = offsetCfg["offsetX"].as<float>(offsets.offsetX);
 
 			g_config.debugMode = cfg["debugMode"].as<bool>(g_config.debugMode);
 
@@ -121,6 +126,11 @@ namespace vrperfkit {
 			LOG_INFO << "    * Outer radius: " << std::setprecision(2) << g_config.ffr.outerRadius;
 			if (!g_config.ffr.overrideSingleEyeOrder.empty()) {
 				LOG_INFO << "    * Eye order:    " << g_config.ffr.overrideSingleEyeOrder;
+			}
+			
+			if (g_config.offsets.offsetY != 1.0 || g_config.offsets.offsetX != 1.0) {
+				LOG_INFO << "    * Offset Y:     " << std::setprecision(2) << g_config.offsets.offsetY;
+				LOG_INFO << "    * Offset X:     " << std::setprecision(2) << g_config.offsets.offsetX;
 			}
 		}
 		LOG_INFO << "  Debug mode is " << PrintToggle(g_config.debugMode);

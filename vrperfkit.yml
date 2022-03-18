@@ -102,3 +102,11 @@ hotkeys:
   toggleFixedFoveated: ["alt", "f1"]
   # toggle if you want to prefer horizontal or vertical resolution
   toggleFFRFavorHorizontal: ["alt", "f2"]
+
+# Move the sweet spot horizontally and vertically if it's not in the 
+# middle of your headset view (test this with debugMode set to true)
+centerOffset:
+  # Values > 1.0 move the center to the right (X)/bottom (Y)
+  # Values < 1.0 move the center to the left (X)/top (Y)
+  offsetY: 1.0
+  offsetX: 1.0
