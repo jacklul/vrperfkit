@@ -70,6 +70,26 @@ namespace {
 		LOG_INFO << "Capturing output...";
 	}
 
+	void IncreaseOffsetY() {
+		g_config.offsets.offsetY += 0.05f;
+		LOG_INFO << "New offsetY: " << g_config.offsets.offsetY;
+	}
+
+	void DecreaseOffsetY() {
+		g_config.offsets.offsetY -= 0.05f;
+		LOG_INFO << "New offsetY: " << g_config.offsets.offsetY;
+	}
+
+	void IncreaseOffsetX() {
+		g_config.offsets.offsetX += 0.05f;
+		LOG_INFO << "New offsetX: " << g_config.offsets.offsetX;
+	}
+
+	void DecreaseOffsetX() {
+		g_config.offsets.offsetX -= 0.05f;
+		LOG_INFO << "New offsetX: " << g_config.offsets.offsetX;
+	}
+
 	struct HotkeyDefinition {
 		std::string name;
 		std::function<void()> action;
@@ -88,6 +108,10 @@ namespace {
 			{"toggleFixedFoveated", ToggleFixedFoveated},
 			{"toggleFFRFavorHorizontal", ToggleFFRFavorHorizontal},
 			{"captureOutput", CaptureOutput},
+			{"increaseOffsetY", IncreaseOffsetY},
+			{"decreaseOffsetY", DecreaseOffsetY},
+			{"increaseOffsetX", IncreaseOffsetX},
+			{"decreaseOffsetX", DecreaseOffsetX},
 		};
 	}
 
