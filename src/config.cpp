@@ -127,11 +127,10 @@ namespace vrperfkit {
 			if (!g_config.ffr.overrideSingleEyeOrder.empty()) {
 				LOG_INFO << "    * Eye order:    " << g_config.ffr.overrideSingleEyeOrder;
 			}
-			
-			if (g_config.offsets.offsetY != 1.0 || g_config.offsets.offsetX != 1.0) {
-				LOG_INFO << "    * Offset Y:     " << std::setprecision(2) << g_config.offsets.offsetY;
-				LOG_INFO << "    * Offset X:     " << std::setprecision(2) << g_config.offsets.offsetX;
-			}
+		}
+		if (g_config.offsets.offsetY != 1.0 || g_config.offsets.offsetX != 1.0) {
+			LOG_INFO << "    * Offset Y:     " << std::setprecision(2) << g_config.offsets.offsetY;
+			LOG_INFO << "    * Offset X:     " << std::setprecision(2) << g_config.offsets.offsetX;
 		}
 		LOG_INFO << "  Debug mode is " << PrintToggle(g_config.debugMode);
 		FlushLog();
